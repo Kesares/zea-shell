@@ -3,7 +3,7 @@ package dev.kesares.zea.cmd.executor;
 import dev.kesares.zea.cmd.Command;
 import dev.kesares.zea.shell.ShellContext;
 
-public class InternalCommandExecuter implements CommandExecutor {
+public class InternalCommandExecutor implements CommandExecutor {
 
     private Command command;
 

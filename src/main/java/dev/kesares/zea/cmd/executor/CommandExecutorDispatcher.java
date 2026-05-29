@@ -9,7 +9,7 @@ public class CommandExecutorDispatcher {
 
     private final CommandRegistry commandRegistry;
     private final ExternalCommandExecutor externalCommandExecutor = new ExternalCommandExecutor();
-    private final InternalCommandExecuter internalCommandExecuter = new InternalCommandExecuter();
+    private final InternalCommandExecutor internalCommandExecutor = new InternalCommandExecutor();
 
     public CommandExecutorDispatcher(CommandRegistry commandRegistry) {
         this.commandRegistry = commandRegistry;
@@ -18,8 +18,8 @@ public class CommandExecutorDispatcher {
     public CommandExecutor resolveCommandExecutor(String name) {
         Optional<Command> optCommand = this.commandRegistry.find(name);
         if (optCommand.isPresent()) {
-            this.internalCommandExecuter.setCommand(optCommand.get());
-            return this.internalCommandExecuter;
+            this.internalCommandExecutor.setCommand(optCommand.get());
+            return this.internalCommandExecutor;
         }
         return this.externalCommandExecutor;
     }
