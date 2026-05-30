@@ -25,7 +25,7 @@ public enum Shell {
             if (input == null || input.isBlank())
                 continue;
 
-            String[] parts = input.split(" ");
+            String[] parts = input.split("\\s+");
             String command = parts[0];
             String[] args = Arrays.copyOfRange(parts, 1, parts.length);
 
