@@ -1,5 +1,6 @@
 package dev.kesares.zea.cmd.executor;
 
+import dev.kesares.zea.io.ShellIO;
 import dev.kesares.zea.shell.ShellContext;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class ExternalCommandExecutor implements CommandExecutor {
             Process process = processBuilder.start();
             return process.waitFor();
         } catch (IOException e) {
-            IO.println(command + ": command not found");
+            ShellIO.errln(command + ": command not found");
             return ExitCode.COMMAND_NOT_FOUND.code();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();

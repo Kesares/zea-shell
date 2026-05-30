@@ -3,6 +3,7 @@ package dev.kesares.zea.shell;
 import dev.kesares.zea.cmd.CommandRegistry;
 import dev.kesares.zea.cmd.executor.CommandExecutor;
 import dev.kesares.zea.cmd.executor.CommandExecutorDispatcher;
+import dev.kesares.zea.io.ShellIO;
 
 import java.util.Arrays;
 
@@ -20,9 +21,12 @@ public enum Shell {
 
     public void run() {
         while (this.shellContext.isRunning()) {
-            String input = IO.readln("$ ");
+            String input = ShellIO.readln("$ ");
 
-            if (input == null || input.isBlank())
+            if (input == null)
+                break;
+
+            if (input.isBlank())
                 continue;
 
             String[] parts = input.trim().split("\\s+");
