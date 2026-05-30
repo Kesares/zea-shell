@@ -8,8 +8,8 @@ public class InternalCommandExecutor implements CommandExecutor {
     private Command command;
 
     @Override
-    public void execute(ShellContext context, String command, String... args) {
-        this.command.execute(context, args);
+    public int execute(ShellContext context, String command, String... args) {
+        return this.command.execute(context, args);
     }
 
     public void setCommand(Command command) {

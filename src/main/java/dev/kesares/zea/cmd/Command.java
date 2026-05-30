@@ -25,5 +25,5 @@ public interface Command {
      * @param args    the arguments passed to the command, which may influence
      *                its behavior.
      */
-    void execute(ShellContext context, String... args);
+    int execute(ShellContext context, String... args);
 }

@@ -9,7 +9,7 @@ import java.util.List;
 public class ExternalCommandExecutor implements CommandExecutor {
 
     @Override
-    public void execute(ShellContext context, String command, String... args) {
+    public int execute(ShellContext context, String command, String... args) {
         List<String> commandParts = new ArrayList<>();
         commandParts.add(command);
         commandParts.addAll(List.of(args));
@@ -20,13 +20,13 @@ public class ExternalCommandExecutor implements CommandExecutor {
 
         try {
             Process process = processBuilder.start();
-            process.waitFor();
+            return process.waitFor();
         } catch (IOException e) {
-            IO.println("Command not found: " + command);
-            context.setLastExitCode(127);
+            IO.println(command + ": command not found");
+            return ExitCode.COMMAND_NOT_FOUND.code();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            context.setLastExitCode(130);
+            return ExitCode.INTERRUPTED.code();
         }
     }
 }

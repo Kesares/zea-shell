@@ -25,12 +25,13 @@ public enum Shell {
             if (input == null || input.isBlank())
                 continue;
 
-            String[] parts = input.split("\\s+");
+            String[] parts = input.trim().split("\\s+");
             String command = parts[0];
             String[] args = Arrays.copyOfRange(parts, 1, parts.length);
 
-            CommandExecutor executor = this.commandExecutorDispatcher.resolveCommandExecutor(parts[0]);
-            executor.execute(this.shellContext, command, args);
+            CommandExecutor executor = this.commandExecutorDispatcher.resolveCommandExecutor(command);
+            int exitCode = executor.execute(this.shellContext, command, args);
+            this.shellContext.setLastExitCode(exitCode);
         }
     }
 }

@@ -8,11 +8,13 @@ import dev.kesares.zea.shell.ShellContext;
 public interface CommandExecutor {
 
     /**
-     * Executes a specified command within the given shell context, optionally with arguments.
+     * Executes a command within the provided shell context.
      *
-     * @param context the shell context in which the command is executed
-     * @param command the name or path of the command to execute
-     * @param args    optional arguments to pass to the command
+     * @param context the current shell context in which the command is executed. Must not be null.
+     * @param command the name of the command to execute. Must not be null or blank.
+     * @param args optional arguments passed to the command. Maybe empty but not null.
+     * @return the exit code resulting from the command execution. A value of 0 typically indicates
+     *         successful execution, while non-zero values represent various failure conditions.
      */
-    void execute(ShellContext context, String command, String... args);
+    int execute(ShellContext context, String command, String... args);
 }
