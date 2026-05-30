@@ -22,7 +22,7 @@ public class ExternalCommandExecutor implements CommandExecutor {
             Process process = processBuilder.start();
             process.waitFor();
         } catch (IOException e) {
-            IO.println("Command not found: " + args[0]);
+            IO.println("Command not found: " + command);
             context.setLastExitCode(127);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
