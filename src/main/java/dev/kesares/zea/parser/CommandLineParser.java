@@ -1,0 +1,17 @@
+package dev.kesares.zea.parser;
+
+import java.util.Arrays;
+import java.util.Optional;
+
+public class CommandLineParser {
+
+    public Optional<ParsedCommand> parse(String input) {
+        if (input.isBlank())
+            return Optional.empty();
+
+        String[] parts = input.trim().split("\\s+");
+        String command = parts[0];
+        String[] args = Arrays.copyOfRange(parts, 1, parts.length);
+        return Optional.of(new ParsedCommand(command, args));
+    }
+}
