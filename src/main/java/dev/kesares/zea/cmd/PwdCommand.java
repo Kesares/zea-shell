@@ -5,7 +5,7 @@ import dev.kesares.zea.shell.ShellContext;
 public class PwdCommand implements Command {
 
     @Override
-    public String getId() {
+    public String getName() {
         return "pwd";
     }
 

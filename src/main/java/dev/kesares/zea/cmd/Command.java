@@ -4,7 +4,7 @@ import dev.kesares.zea.shell.ShellContext;
 
 public interface Command {
 
-    String getId();
+    String getName();
 
     void execute(ShellContext context, String... args);
 }

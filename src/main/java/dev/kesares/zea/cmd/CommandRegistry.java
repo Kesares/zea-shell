@@ -16,9 +16,9 @@ public class CommandRegistry {
     }
 
     public void register(Command command) {
-        if (this.commands.containsKey(command.getId()))
-            throw new CommandAlreadyRegisteredException("Command already registered: " + command.getId());
-        this.commands.put(command.getId(), command);
+        if (this.commands.containsKey(command.getName()))
+            throw new CommandAlreadyRegisteredException("Command already registered: " + command.getName());
+        this.commands.put(command.getName(), command);
     }
 
     public Optional<Command> find(String name) {
