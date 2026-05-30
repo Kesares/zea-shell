@@ -4,5 +4,5 @@ import dev.kesares.zea.shell.ShellContext;
 
 public interface CommandExecutor {
 
-    void execute(ShellContext context, String... args);
+    void execute(ShellContext context, String command, String... args);
 }

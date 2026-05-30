@@ -29,8 +29,11 @@ public enum Shell {
                 continue;
 
             String[] parts = prompt.split(" ");
+            String command = parts[0];
+            String[] args = Arrays.copyOfRange(parts, 1, parts.length);
+
             CommandExecutor executor = this.commandExecutorDispatcher.resolveCommandExecutor(parts[0]);
-            executor.execute(this.shellContext, Arrays.copyOfRange(parts, 1, parts.length));
+            executor.execute(this.shellContext, command, args);
         }
     }
 }
