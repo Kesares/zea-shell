@@ -16,7 +16,7 @@ public class ExternalCommandExecutor implements CommandExecutor {
             Process process = processBuilder.start();
             process.waitFor();
         } catch (IOException e) {
-            System.err.println(args[0] + ": command not found");
+            IO.println("Command not found: " + args[0]);
             context.setLastExitCode(127);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
