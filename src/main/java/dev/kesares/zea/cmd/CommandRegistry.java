@@ -1,6 +1,6 @@
 package dev.kesares.zea.cmd;
 
-import dev.kesares.zea.exception.CommandAlreadyRegisteredException;
+import dev.kesares.zea.exception.DuplicateCommandException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +24,7 @@ public class CommandRegistry {
      * to the command registry, making them available for execution.
      * The commands being registered must provide unique names to avoid conflicts.
      *
-     * @throws CommandAlreadyRegisteredException if a conflict is encountered while
+     * @throws DuplicateCommandException if a conflict is encountered while
      *         registering one of the default commands. This occurs when a command
      *         with the same name is already present in the registry.
      */
@@ -36,16 +36,16 @@ public class CommandRegistry {
     /**
      * Registers a new command with the command registry.
      * If a command with the same name is already registered,
-     * a {@link CommandAlreadyRegisteredException} is thrown.
+     * a {@link DuplicateCommandException} is thrown.
      *
      * @param command the command to be registered. Must implement the {@link Command} interface.
      *                The {@code command.getName()} method must return a unique name
      *                that does not conflict with previously registered commands.
-     * @throws CommandAlreadyRegisteredException if a command with the same name is already registered.
+     * @throws DuplicateCommandException if a command with the same name is already registered.
      */
     public void register(Command command) {
         if (this.commands.containsKey(command.getName()))
-            throw new CommandAlreadyRegisteredException("Command already registered: " + command.getName());
+            throw new DuplicateCommandException("Command already registered: " + command.getName());
         this.commands.put(command.getName(), command);
     }
 
