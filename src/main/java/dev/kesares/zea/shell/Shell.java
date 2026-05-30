@@ -19,16 +19,13 @@ public enum Shell {
     }
 
     public void run() {
-        while (true) {
-            String prompt = IO.readln("$ ");
+        while (this.shellContext.isRunning()) {
+            String input = IO.readln("$ ");
 
-            if (prompt == null || prompt.equals("exit"))
-                break;
-
-            if (prompt.isBlank())
+            if (input == null || input.isBlank())
                 continue;
 
-            String[] parts = prompt.split(" ");
+            String[] parts = input.split(" ");
             String command = parts[0];
             String[] args = Arrays.copyOfRange(parts, 1, parts.length);
 

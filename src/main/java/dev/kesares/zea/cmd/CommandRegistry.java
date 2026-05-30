@@ -29,6 +29,7 @@ public class CommandRegistry {
      *         with the same name is already present in the registry.
      */
     public void init() {
+        this.register(new ExitCommand());
         this.register(new EchoCommand());
         this.register(new PwdCommand());
     }
