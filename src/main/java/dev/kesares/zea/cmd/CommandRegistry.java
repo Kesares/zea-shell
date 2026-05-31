@@ -18,17 +18,7 @@ public class CommandRegistry {
 
     private final Map<String, Command> commands = new HashMap<>();
 
-    /**
-     * Initializes the command registry by registering the default commands.
-     * This method adds predefined commands, such as the "echo" and "pwd" commands,
-     * to the command registry, making them available for execution.
-     * The commands being registered must provide unique names to avoid conflicts.
-     *
-     * @throws DuplicateCommandException if a conflict is encountered while
-     *         registering one of the default commands. This occurs when a command
-     *         with the same name is already present in the registry.
-     */
-    public void init() {
+    public CommandRegistry() {
         this.register(new ExitCommand());
         this.register(new EchoCommand());
         this.register(new PwdCommand());

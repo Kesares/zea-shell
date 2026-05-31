@@ -18,10 +18,6 @@ public enum Shell {
     private final CommandRegistry commandRegistry = new CommandRegistry();
     private final CommandExecutorDispatcher commandExecutorDispatcher = new CommandExecutorDispatcher(this.commandRegistry);
 
-    public void init() {
-        this.commandRegistry.init();
-    }
-
     public void run() {
         while (this.shellContext.isRunning()) {
             String input = ShellIO.readln("$ ");
