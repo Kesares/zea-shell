@@ -22,6 +22,7 @@ public class CommandRegistry {
         this.register(new ExitCommand());
         this.register(new EchoCommand());
         this.register(new PwdCommand());
+        this.register(new CdCommand());
     }
 
     /**

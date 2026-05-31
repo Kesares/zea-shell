@@ -1,13 +1,15 @@
 package dev.kesares.zea.shell;
 
+import dev.kesares.zea.cmd.executor.ExitCode;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ShellContext {
 
     private boolean isRunning = true;
-    private final Path currentDirectory = Paths.get("").toAbsolutePath();
-    private int lastExitCode = 0;
+    private Path currentDirectory = Paths.get("").toAbsolutePath();
+    private int lastExitCode = ExitCode.SUCCESS.code();
 
     public boolean isRunning() {
         return isRunning;
@@ -19,6 +21,10 @@ public class ShellContext {
 
     public Path getCurrentDirectory() {
         return currentDirectory;
+    }
+
+    public void setCurrentDirectory(Path currentDirectory) {
+        this.currentDirectory = currentDirectory;
     }
 
     @SuppressWarnings("unused")
