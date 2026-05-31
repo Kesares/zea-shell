@@ -6,7 +6,7 @@ import java.util.Optional;
 public class CommandLineParser {
 
     public Optional<ParsedCommand> parse(String input) {
-        if (input.isBlank())
+        if (input == null || input.isBlank())
             return Optional.empty();
 
         String[] parts = input.trim().split("\\s+");

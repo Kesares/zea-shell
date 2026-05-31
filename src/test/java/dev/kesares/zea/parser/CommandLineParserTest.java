@@ -11,6 +11,13 @@ class CommandLineParserTest {
     private final CommandLineParser parser = new CommandLineParser();
 
     @Test
+    void parseReturnsEmptyForNullInput() {
+        Optional<ParsedCommand> result = this.parser.parse(null);
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
     void parseReturnsEmptyForBlankInput() {
         Optional<ParsedCommand> result = this.parser.parse("   ");
 
