@@ -3,7 +3,7 @@ package dev.kesares.zea.parser;
 import java.util.Arrays;
 import java.util.Optional;
 
-public class CommandLineParser {
+public class Parser {
 
     public Optional<ParsedCommand> parse(String input) {
         if (input == null || input.isBlank())

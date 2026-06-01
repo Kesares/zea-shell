@@ -6,9 +6,9 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CommandLineParserTest {
+class ParserTest {
 
-    private final CommandLineParser parser = new CommandLineParser();
+    private final Parser parser = new Parser();
 
     @Test
     void parseReturnsEmptyForNullInput() {

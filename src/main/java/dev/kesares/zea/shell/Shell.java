@@ -4,7 +4,7 @@ import dev.kesares.zea.cmd.CommandRegistry;
 import dev.kesares.zea.cmd.executor.CommandExecutor;
 import dev.kesares.zea.cmd.executor.CommandExecutorDispatcher;
 import dev.kesares.zea.io.ShellIO;
-import dev.kesares.zea.parser.CommandLineParser;
+import dev.kesares.zea.parser.Parser;
 import dev.kesares.zea.parser.ParsedCommand;
 
 import java.util.Optional;
@@ -14,7 +14,7 @@ public enum Shell {
     INSTANCE;
 
     private final ShellContext shellContext = new ShellContext();
-    private final CommandLineParser commandLineParser = new CommandLineParser();
+    private final Parser parser = new Parser();
     private final CommandRegistry commandRegistry = new CommandRegistry();
     private final CommandExecutorDispatcher commandExecutorDispatcher = new CommandExecutorDispatcher(this.commandRegistry);
 
@@ -25,7 +25,7 @@ public enum Shell {
             if (input == null)
                 break;
 
-            Optional<ParsedCommand> optParsed = this.commandLineParser.parse(input);
+            Optional<ParsedCommand> optParsed = this.parser.parse(input);
 
             if (optParsed.isEmpty())
                 continue;
