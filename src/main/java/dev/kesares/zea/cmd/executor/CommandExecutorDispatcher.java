@@ -18,28 +18,24 @@ import java.util.Optional;
 public class CommandExecutorDispatcher {
 
     private final CommandRegistry commandRegistry;
-    private final ExternalCommandExecutor externalCommandExecutor = new ExternalCommandExecutor();
-    private final InternalCommandExecutor internalCommandExecutor = new InternalCommandExecutor();
 
     public CommandExecutorDispatcher(CommandRegistry commandRegistry) {
         this.commandRegistry = commandRegistry;
     }
 
     /**
-     * Resolves the appropriate {@link CommandExecutor} based on the provided command name.
-     * If a registered command with the specified name is found, it configures and returns
-     * the internal command executor. Otherwise, it falls back to the external command executor.
+     * Resolves a {@link CommandExecutor} for the given command name. If the command is found
+     * in the internal {@code CommandRegistry}, an {@link InternalCommandExecutor} is returned.
+     * Otherwise, an {@link ExternalCommandExecutor} is provided as a fallback to handle unknown
+     * or external commands.
      *
-     * @param name the name of the command to execute. Must not be null.
-     * @return the resolved {@link CommandExecutor}, either internal or external,
-     *         based on the existence of the command in the registry.
+     * @param name the name of the command to resolve. Must not be null.
+     * @return an implementation of {@link CommandExecutor} capable of executing the specified command.
      */
     public CommandExecutor resolveCommandExecutor(String name) {
         Optional<Command> optCommand = this.commandRegistry.find(name);
-        if (optCommand.isPresent()) {
-            this.internalCommandExecutor.setCommand(optCommand.get());
-            return this.internalCommandExecutor;
-        }
-        return this.externalCommandExecutor;
+        if (optCommand.isPresent())
+            return new InternalCommandExecutor(optCommand.get());
+        return new ExternalCommandExecutor();
     }
 }

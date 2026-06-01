@@ -5,14 +5,14 @@ import dev.kesares.zea.shell.ShellContext;
 
 public class InternalCommandExecutor implements CommandExecutor {
 
-    private Command command;
+    private final Command command;
+
+    public InternalCommandExecutor(Command command) {
+        this.command = command;
+    }
 
     @Override
     public int execute(ShellContext context, String command, String... args) {
         return this.command.execute(context, args);
-    }
-
-    public void setCommand(Command command) {
-        this.command = command;
     }
 }
