@@ -13,11 +13,6 @@ public class Parser {
         if (input == null || input.isBlank())
             return Optional.empty();
 
-//        String[] parts = input.trim().split("\\s+");
-//        String command = parts[0];
-//        String[] args = Arrays.copyOfRange(parts, 1, parts.length);
-//        return Optional.of(new ParsedCommand(command, args));
-
         Lexer lexer = new Lexer(input);
         List<Token> tokens = lexer.lex();
         List<String> words = new ArrayList<>();
